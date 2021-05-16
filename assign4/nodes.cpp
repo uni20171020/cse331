@@ -1,15 +1,18 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <fstream>
 
 using namespace std;
 
-int main()
+int main(int argc, char*argv[])
 {
 
 	vector<int> weight;
 	string input;
-	getline(cin, input);
+	ifstream inputfile(argv[1]);
+
+	getline(inputfile, input);
 
 	int start = 0;
 	int stop = 0;
@@ -22,11 +25,6 @@ int main()
 		if (start >= ipsize) break;
 	}
 
-	//cout << weight.size() << endl;
-	//for (int i = 0; i < weight.size(); i++)
-	//{
-	//	cout << weight.at(i) << " ";
-	//}
 
 	int* A, * B, * C;
 	int size = weight.size() / 2;
@@ -101,14 +99,14 @@ int main()
 
 	if (output == A[size])
 	{
-		for (int i = 0; i < nodesa.size(); i++)
+		for (size_t i = 0; i < nodesa.size(); i++)
 		{
 			cout << nodesa.at(i) << " ";
 		}
 	}
 	else
 	{
-		for (int i = 0; i < nodesb.size(); i++)
+		for (size_t i = 0; i < nodesb.size(); i++)
 		{
 			cout << nodesb.at(i) << " ";
 		}

@@ -1,15 +1,18 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <fstream>
 
 using namespace std;
 
-int main()
+int main(int argc, char*argv[])
 {
 
 	vector<int> weight;
 	string input;
-	getline(cin, input);
+	ifstream inputfile(argv[1]);
+	
+	getline(inputfile, input);
 
 	int start = 0;
 	int stop = 0;
@@ -43,7 +46,7 @@ int main()
 		B[i] = weight.at(2 * i - 1) + max(A[i - 1], C[i - 1]);
 		C[i] = max(A[i - 1], B[i - 1]);
 	}
-	cout << A[size] << " " << B[size] << endl;
+
 	int output = max(A[size], B[size]);
 	cout << output << endl;
 
