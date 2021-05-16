@@ -35,12 +35,13 @@ int main(int argc, char*argv[])
 	B[0] = 0;
 	C[0] = 0;
 
-	vector<int> nodesa;
+	vector<int> nodesa;// each vector get nodes from each process
 	vector<int> nodesb;
 	vector<int> nodesc;
-	vector<int> tempa;
+	vector<int> tempa;// temp vector for updating nodesc
 	vector<int> tempb;
 
+	// case for i = 1 in above 'for'
 	A[1] = weight.at(0);
 	B[1] = weight.at(1);
 	C[1] = 0;
@@ -59,11 +60,13 @@ int main(int argc, char*argv[])
 
 		tempa.clear();
 		tempa.resize(nodesa.size());
-		copy(nodesa.begin(), nodesa.end(), tempa.begin());
+		copy(nodesa.begin(), nodesa.end(), tempa.begin());//copy nodesa to tempa
 		tempb.clear();
 		tempb.resize(nodesb.size());
-		copy(nodesb.begin(), nodesb.end(), tempb.begin());
+		copy(nodesb.begin(), nodesb.end(), tempb.begin());//copy nodesb to tempb
 		nodesa.swap(nodesb);
+		/*I use swap function, because if resulf of max(b,c) and max(a,c) is not c,
+		we can just push_back after swap!*/
 
 		if (b < c)
 		{
@@ -84,6 +87,7 @@ int main(int argc, char*argv[])
 		if (a >= b)
 		{
 			nodesc.resize(tempa.size());
+			//we need temp value because we use value of before updating
 			copy(tempa.begin(), tempa.end(), nodesc.begin());
 		}
 		else
